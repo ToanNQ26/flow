@@ -1,0 +1,11 @@
+{
+  "name": "flow-construction-procurement-system",
+  "version": "1.0.0",
+  "description": "Hệ thống Phê duyệt Mua sắm & Đề xuất Thanh toán Xây dựng",
+  "scripts": {
+    "server": "npm run dev --prefix server",
+    "client": "npm run dev --prefix client",
+    "seed": "npm run seed --prefix server",
+    "build:client": "npm run build --prefix client"
+  }
+}

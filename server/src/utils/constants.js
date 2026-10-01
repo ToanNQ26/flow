@@ -1,0 +1,102 @@
+// ============================================================
+// CONSTANTS & ENUMS
+// Construction Procurement & Payment Approval System
+// ============================================================
+
+/**
+ * Vai trò người dùng trong hệ thống (RBAC)
+ */
+const ROLES = Object.freeze({
+  SITE_MANAGER: 'SITE_MANAGER',   // Trưởng thi công
+  PROCUREMENT: 'PROCUREMENT',     // Thu mua
+  CEO: 'CEO',                     // Giám đốc
+  CHAIRMAN: 'CHAIRMAN',           // Chủ tịch
+  ACCOUNTANT: 'ACCOUNTANT',       // Kế toán
+  TREASURER: 'TREASURER',         // Thủ quỹ
+});
+
+const ROLE_LABELS = Object.freeze({
+  [ROLES.SITE_MANAGER]: 'Trưởng thi công',
+  [ROLES.PROCUREMENT]: 'Thu mua',
+  [ROLES.CEO]: 'Giám đốc',
+  [ROLES.CHAIRMAN]: 'Chủ tịch',
+  [ROLES.ACCOUNTANT]: 'Kế toán',
+  [ROLES.TREASURER]: 'Thủ quỹ',
+});
+
+/**
+ * Trạng thái Yêu cầu Mua sắm (PurchaseRequest)
+ */
+const PURCHASE_REQUEST_STATUS = Object.freeze({
+  DRAFT: 'DRAFT',                               // Nháp - Trưởng thi công đang soạn
+  PENDING_CEO_APPROVAL: 'PENDING_CEO_APPROVAL', // Chờ CEO duyệt
+  APPROVED_BY_CEO: 'APPROVED_BY_CEO',           // CEO đã duyệt
+  REJECTED: 'REJECTED',                         // Bị từ chối
+});
+
+/**
+ * Trạng thái Khảo sát NCC (VendorComparison / VendorQuote)
+ */
+const VENDOR_COMPARISON_STATUS = Object.freeze({
+  DRAFT: 'DRAFT',                               // Thu mua đang nhập NCC
+  PENDING_APPROVAL: 'PENDING_APPROVAL',         // Chờ CEO & Chairman duyệt
+  APPROVED_BY_CEO: 'APPROVED_BY_CEO',           // CEO đã duyệt, chờ Chairman
+  APPROVED_BY_CHAIRMAN: 'APPROVED_BY_CHAIRMAN', // Chairman đã duyệt, chờ CEO
+  VENDOR_APPROVED: 'VENDOR_APPROVED',           // Cả CEO & Chairman đã duyệt
+  REJECTED: 'REJECTED',                         // Bị từ chối
+});
+
+/**
+ * Trạng thái Hợp đồng (Contract)
+ */
+const CONTRACT_STATUS = Object.freeze({
+  DRAFT: 'DRAFT',                               // Thu mua đang soạn
+  UPLOADED: 'UPLOADED',                         // Đã upload file hợp đồng
+  HANDED_TO_ACCOUNTANT: 'HANDED_TO_ACCOUNTANT', // Đã chuyển giao cho Kế toán
+});
+
+/**
+ * Trạng thái Đề xuất Thanh toán (PaymentProposal)
+ */
+const PAYMENT_PROPOSAL_STATUS = Object.freeze({
+  DRAFT: 'DRAFT',                                       // Kế toán đang soạn
+  PENDING_CEO_APPROVAL: 'PENDING_CEO_APPROVAL',         // Chờ CEO duyệt
+  PENDING_CHAIRMAN: 'PENDING_CHAIRMAN',                 // CEO duyệt sơ bộ (>= 50tr), chờ Chairman
+  WAITING_CHAIRMAN_APPROVAL: 'PENDING_CHAIRMAN',       // Alias tương thích
+  APPROVED_READY_TO_PAY: 'APPROVED_READY_TO_PAY',       // Đã duyệt, sẵn sàng chi tiền
+  REJECTED: 'REJECTED',                                 // Bị từ chối
+});
+
+/**
+ * Trạng thái Chi quỹ (Disbursement)
+ */
+const DISBURSEMENT_STATUS = Object.freeze({
+  PENDING: 'PENDING',   // Chờ chi
+  PAID: 'PAID',         // Đã chi tiền - hoàn tất
+});
+
+/**
+ * Loại thanh toán
+ */
+const PAYMENT_TYPE = Object.freeze({
+  ONE_TIME: 'ONE_TIME',       // Thanh toán 1 lần
+  MILESTONE: 'MILESTONE',     // Thanh toán theo đợt
+});
+
+/**
+ * Ngưỡng tài chính yêu cầu Chairman phê duyệt
+ */
+const CHAIRMAN_APPROVAL_THRESHOLD = 50_000_000; // 50,000,000 VNĐ
+
+module.exports = {
+  ROLES,
+  ROLE_LABELS,
+  PURCHASE_REQUEST_STATUS,
+  VENDOR_COMPARISON_STATUS,
+  CONTRACT_STATUS,
+  PAYMENT_PROPOSAL_STATUS,
+  DISBURSEMENT_STATUS,
+  PAYMENT_TYPE,
+  CHAIRMAN_APPROVAL_THRESHOLD,
+};
+
