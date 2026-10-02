@@ -45,7 +45,7 @@ export default function AdvancePage() {
     run(async () => { await advanceApi.submitSettlement(settlement.id, data); setSettlement({ id: '', type: 'SURPLUS', amount: '', files: [] }); });
   };
 
-  const canCreate = ['SITE_MANAGER', 'PROCUREMENT', 'ACCOUNTANT'].includes(user?.role);
+  const canCreate =  true;//['SITE_MANAGER', 'PROCUREMENT', 'ACCOUNTANT'].includes(user?.role);
   const canSettle = ['SITE_MANAGER', 'PROCUREMENT', 'ACCOUNTANT'].includes(user?.role);
   return (
     <div className="mx-auto max-w-7xl space-y-6 px-4 py-8 sm:px-6 lg:px-8">
