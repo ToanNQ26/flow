@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 import {
   requestApi,
   vendorApi,
@@ -66,6 +67,8 @@ const Dashboard = () => {
   const [activeTab, setActiveTab] = useState('KANBAN'); // KANBAN or TABLE
   const [searchTerm, setSearchTerm] = useState('');
 
+  const navigate = useNavigate();
+
   const loadAllData = async () => {
     setLoading(true);
     try {
@@ -120,12 +123,12 @@ const Dashboard = () => {
                 </span>
               </div>
               <p className="text-xs sm:text-sm text-slate-500 mt-1">
-                Theo dõi vòng đời từ <strong>Yêu cầu vật tư</strong> $\rightarrow$ <strong>Báo giá NCC</strong> $\rightarrow$ <strong>Hợp đồng</strong> $\rightarrow$ <strong>Đề xuất thanh toán</strong> $\rightarrow$ <strong>Chi quỹ</strong>.
+                Theo dõi vòng đời từ <strong>Yêu cầu vật tư</strong> ,<strong>Báo giá NCC</strong> , <strong>Hợp đồng</strong> , <strong>Đề xuất thanh toán</strong> , <strong>Chi quỹ</strong>.
               </p>
             </div>
 
             {/* Quick action theo Role */}
-            <div className="flex items-center gap-2.5">
+            <div className="flex flex-wrap items-center gap-2.5">
               <button
                 onClick={loadAllData}
                 disabled={loading}
@@ -144,6 +147,14 @@ const Dashboard = () => {
                   <Plus className="w-4 h-4" /> Tạo Yêu Cầu Cấp Vật Tư
                 </button>
               )}
+            </div>
+            <div>
+              <button
+                onClick={() => navigate('/advances')}
+                className="px-4 py-2 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 active:scale-95 rounded-xl shadow-md shadow-emerald-500/20 flex items-center gap-1.5 transition"
+              >
+                <Banknote className="w-4 h-4" /> Đề xuất tạm ứng
+              </button>
             </div>
           </div>
 

@@ -6,6 +6,7 @@ import Dashboard from './pages/Dashboard';
 import LoginPage from './pages/LoginPage';
 import UnauthorizedPage from './pages/UnauthorizedPage';
 import ProtectedRoute from './components/auth/ProtectedRoute';
+import AdvancePage from './pages/AdvancePage';
 
 function App() {
   return (
@@ -34,6 +35,15 @@ function App() {
                 element={
                   <ProtectedRoute>
                     <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+
+              <Route
+                path="/advances"
+                element={
+                  <ProtectedRoute>
+                    <AdvancePage />
                   </ProtectedRoute>
                 }
               />
